@@ -1,0 +1,13 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: xuetang-content
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.231.201:3306/xuetang_content
+      username: root
+      password: abc666
+
