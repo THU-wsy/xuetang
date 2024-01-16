@@ -1,17 +1,16 @@
 server:
-  port: 63040
+  port: 63110
 spring:
   application:
-    name: xuetang-content
+    name: xuetang-system
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://192.168.231.201:3306/xuetang_content
+      url: jdbc:mysql://192.168.231.201:3306/xuetang_system
       username: root
       password: abc666
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-

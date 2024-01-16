@@ -1,5 +1,8 @@
 package com.thuwsy.xuetang.content.service;
 
+import com.thuwsy.xuetang.base.model.PageParams;
+import com.thuwsy.xuetang.base.model.PageResult;
+import com.thuwsy.xuetang.content.dto.QueryCourseParamsDto;
 import com.thuwsy.xuetang.content.po.CourseBase;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +12,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-01-12 14:44:10
 */
 public interface CourseBaseService extends IService<CourseBase> {
-
+    /**
+     * 查询课程
+     * @param params 分页参数
+     * @param dto 查询条件
+     * @return PageResult
+     */
+    PageResult<CourseBase> queryCourseBaseList(PageParams params, QueryCourseParamsDto dto);
 }

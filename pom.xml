@@ -11,6 +11,7 @@
     <modules>
         <module>xuetang-base</module>
         <module>xuetang-content</module>
+        <module>xuetang-system</module>
     </modules>
 
     <!--管理版本号-->
