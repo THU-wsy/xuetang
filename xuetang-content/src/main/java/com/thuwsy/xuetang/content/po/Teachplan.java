@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
@@ -14,6 +14,7 @@ import lombok.Data;
 @TableName(value ="teachplan")
 @Data
 public class Teachplan implements Serializable {
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     private String pname;
@@ -24,9 +25,9 @@ public class Teachplan implements Serializable {
 
     private String mediaType;
 
-    private Date startTime;
+    private LocalDateTime startTime;
 
-    private Date endTime;
+    private LocalDateTime endTime;
 
     private String description;
 
@@ -42,9 +43,9 @@ public class Teachplan implements Serializable {
 
     private String isPreview;
 
-    private Date createDate;
+    private LocalDateTime createDate;
 
-    private Date changeDate;
+    private LocalDateTime changeDate;
 
     private static final long serialVersionUID = 1L;
 }

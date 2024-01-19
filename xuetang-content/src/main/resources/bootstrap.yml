@@ -13,5 +13,10 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
-
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang
+      config:
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang

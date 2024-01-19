@@ -2,6 +2,9 @@ package com.thuwsy.xuetang.content.service;
 
 import com.thuwsy.xuetang.base.model.PageParams;
 import com.thuwsy.xuetang.base.model.PageResult;
+import com.thuwsy.xuetang.content.dto.AddCourseDto;
+import com.thuwsy.xuetang.content.dto.CourseBaseInfoDto;
+import com.thuwsy.xuetang.content.dto.EditCourseDto;
 import com.thuwsy.xuetang.content.dto.QueryCourseParamsDto;
 import com.thuwsy.xuetang.content.po.CourseBase;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -19,4 +22,34 @@ public interface CourseBaseService extends IService<CourseBase> {
      * @return PageResult
      */
     PageResult<CourseBase> queryCourseBaseList(PageParams params, QueryCourseParamsDto dto);
+
+    /**
+     * 添加课程基本信息
+     * @param companyId 教学机构id
+     * @param dto 课程基本信息
+     * @return CourseBaseInfoDto
+     */
+    CourseBaseInfoDto createCourseBase(Long companyId, AddCourseDto dto);
+
+    /**
+     * 根据课程id查询课程信息
+     * @param id 课程id
+     * @return CourseBaseInfoDto
+     */
+    CourseBaseInfoDto getCourseBaseById(Long id);
+
+    /**
+     * 修改课程信息
+     * @param companyId 机构id
+     * @param dto 课程信息DTO
+     * @return CourseBaseInfoDto
+     */
+    CourseBaseInfoDto modifyCourseBase(Long companyId, EditCourseDto dto);
+
+    /**
+     * 删除课程
+     * @param companyId 机构id
+     * @param courseId 课程id
+     */
+    void deleteCourse(Long companyId, Long courseId);
 }

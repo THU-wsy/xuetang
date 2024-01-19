@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
@@ -14,6 +14,7 @@ import lombok.Data;
 @TableName(value ="course_teacher")
 @Data
 public class CourseTeacher implements Serializable {
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     private Long courseId;
@@ -26,7 +27,7 @@ public class CourseTeacher implements Serializable {
 
     private String photograph;
 
-    private Date createDate;
+    private LocalDateTime createDate;
 
     private static final long serialVersionUID = 1L;
 }

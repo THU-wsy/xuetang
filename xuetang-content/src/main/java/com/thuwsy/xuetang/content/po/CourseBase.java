@@ -5,7 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 /**
@@ -14,6 +15,7 @@ import lombok.Data;
 @TableName(value ="course_base")
 @Data
 public class CourseBase implements Serializable {
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     private Long companyId;
@@ -38,9 +40,9 @@ public class CourseBase implements Serializable {
 
     private String pic;
 
-    private Date createDate;
+    private LocalDateTime createDate;
 
-    private Date changeDate;
+    private LocalDateTime changeDate;
 
     private String createPeople;
 

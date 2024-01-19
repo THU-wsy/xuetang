@@ -1,0 +1,22 @@
+server:
+  port: 63050
+spring:
+  application:
+    name: xuetang-media
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.231.201:3306/xuetang_media
+      username: root
+      password: abc666
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang
+      config:
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang

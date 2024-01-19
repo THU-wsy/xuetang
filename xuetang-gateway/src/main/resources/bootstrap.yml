@@ -1,0 +1,34 @@
+server:
+  port: 63010
+spring:
+  application:
+    name: xuetang-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang
+      config:
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang
+    gateway:
+      # 开启从注册中心动态创建路由的功能，即可以利用微服务名进行路由
+      discovery:
+        locator:
+          enabled: true
+      routes: # 网关路由配置
+        - id: xuetang-content
+          uri: lb://xuetang-content
+          predicates:
+            - Path=/content/**
+        - id: xuetang-system
+          uri: lb://xuetang-system
+          predicates:
+            - Path=/system/**
+        - id: xuetang-media
+          uri: lb://xuetang-media
+          predicates:
+            - Path=/media/**
+
