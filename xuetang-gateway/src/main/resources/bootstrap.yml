@@ -14,6 +14,16 @@ spring:
         namespace: dev
         group: xuetang
     gateway:
+      # 网关全局配置跨域
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
       # 开启从注册中心动态创建路由的功能，即可以利用微服务名进行路由
       discovery:
         locator:
