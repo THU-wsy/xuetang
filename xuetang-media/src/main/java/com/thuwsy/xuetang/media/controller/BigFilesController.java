@@ -1,6 +1,5 @@
 package com.thuwsy.xuetang.media.controller;
 
-import com.thuwsy.xuetang.base.exception.XueTangException;
 import com.thuwsy.xuetang.base.model.RestResponse;
 import com.thuwsy.xuetang.media.dto.UploadFileParamsDto;
 import com.thuwsy.xuetang.media.service.MediaFileService;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.io.File;
 
 /**
  * ClassName: BigFilesController
@@ -53,12 +52,26 @@ public class BigFilesController {
     public RestResponse<Boolean> uploadChunk(@RequestParam("file") MultipartFile file,
                                     @RequestParam("fileMd5") String fileMd5,
                                     @RequestParam("chunk") int chunk) {
+        File tmp = null;
         try {
-            return mediaFileService.uploadChunk(fileMd5, chunk, file.getBytes());
-        } catch (IOException e) {
-            XueTangException.cast("上传分块文件失败！");
+            // 1. 将文件保存到本地的临时文件
+            // 创建临时文件
+            tmp = File.createTempFile("chunk", ".tmp");
+            // 将上传的文件拷贝到临时文件
+            file.transferTo(tmp);
+            // 获取临时文件的路径
+            String localFilePath = tmp.getAbsolutePath();
+
+            // 2. 调用service上传该分块文件
+            RestResponse<Boolean> response = mediaFileService.uploadChunk(fileMd5, chunk, localFilePath);
+
+            return response;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            // 3. 删除本地的临时文件
+            tmp.delete();
         }
-        return RestResponse.validfail("上传文件失败", false);
     }
 
     /**
