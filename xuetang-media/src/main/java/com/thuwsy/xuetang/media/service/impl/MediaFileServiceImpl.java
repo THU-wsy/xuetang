@@ -31,9 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * ClassName: MediaFileServiceImpl
@@ -144,7 +142,7 @@ public class MediaFileServiceImpl implements MediaFileService {
      * 根据文件的后缀名确定媒体类型
      */
     private String getContentType(String objectName) {
-        // 默认content-type为未知二进制流
+        // 默认content-type为二进制流
         String contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE;
 
         if (objectName.contains(".")) {
@@ -372,8 +370,13 @@ public class MediaFileServiceImpl implements MediaFileService {
 
         // 4. 调用minio的API进行文件合并
         try {
+            // 设置content-type为视频类型
+            Map<String, String> headers = new HashMap<>();
+            headers.put("Content-Type", "video/mp4");
+
             minioClient.composeObject(ComposeObjectArgs
                     .builder()
+                    .headers(headers)
                     .bucket(bucketVideo)
                     .object(mergeFilePath)
                     .sources(sourceList)
@@ -423,5 +426,20 @@ public class MediaFileServiceImpl implements MediaFileService {
                 log.error("清除分块文件失败, objectName:{}", deleteError.objectName(), e);
             }
         });
+    }
+
+
+    /**
+     * 根据id获取媒资
+     * @param mediaId
+     * @return
+     */
+    @Override
+    public MediaFiles getFileById(String mediaId) {
+        MediaFiles mediaFiles = mediaFilesMapper.selectById(mediaId);
+        if (mediaFiles == null || StringUtils.isEmpty(mediaFiles.getUrl())) {
+            XueTangException.cast("找不到该资源路径");
+        }
+        return mediaFiles;
     }
 }

@@ -3,6 +3,7 @@ package com.thuwsy.xuetang.media.controller;
 import com.thuwsy.xuetang.base.exception.XueTangException;
 import com.thuwsy.xuetang.base.model.PageParams;
 import com.thuwsy.xuetang.base.model.PageResult;
+import com.thuwsy.xuetang.base.model.RestResponse;
 import com.thuwsy.xuetang.media.dto.QueryMediaParamsDto;
 import com.thuwsy.xuetang.media.dto.UploadFileParamsDto;
 import com.thuwsy.xuetang.media.po.MediaFiles;
@@ -75,4 +76,14 @@ public class MediaFilesController {
             tmp.delete();
         }
     }
+
+    /**
+     * 预览文件的接口
+     */
+    @GetMapping("/preview/{mediaId}")
+    public RestResponse<String> getPlayUrlByMediaId(@PathVariable String mediaId) {
+        MediaFiles mediaFiles = mediaFileService.getFileById(mediaId);
+        return RestResponse.success(mediaFiles.getUrl());
+    }
+
 }

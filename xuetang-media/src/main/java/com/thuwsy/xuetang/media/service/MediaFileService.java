@@ -61,4 +61,9 @@ public interface MediaFileService {
      * 合并分块文件
      */
     RestResponse<Boolean> mergeChunks(Long companyId, String fileMd5, int chunkTotal, UploadFileParamsDto uploadFileParamsDto);
+
+    /**
+     * 根据id获取媒资
+     */
+    MediaFiles getFileById(String mediaId);
 }

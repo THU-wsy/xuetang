@@ -20,3 +20,9 @@ spring:
         server-addr: 192.168.231.201:8848
         namespace: dev
         group: xuetang
+  # freemarker模板引擎相关配置
+  freemarker:
+    enabled: true
+    cache: false # 关闭模板缓存，便于测试
+    suffix: .ftl # 页面模板后缀名
+    template-loader-path: classpath:/templates/

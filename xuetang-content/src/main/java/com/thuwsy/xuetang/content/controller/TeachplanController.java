@@ -1,5 +1,6 @@
 package com.thuwsy.xuetang.content.controller;
 
+import com.thuwsy.xuetang.content.dto.BindTeachplanMediaDto;
 import com.thuwsy.xuetang.content.dto.SaveTeachplanDto;
 import com.thuwsy.xuetang.content.dto.TeachplanDto;
 import com.thuwsy.xuetang.content.service.TeachplanService;
@@ -64,4 +65,6 @@ public class TeachplanController {
     public void moveUpTeachplan(@PathVariable Long id) {
         teachplanService.moveUpTeachplan(id);
     }
+
+
 }

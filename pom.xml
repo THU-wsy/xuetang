@@ -27,6 +27,7 @@
         <spring.cloud.alibaba.version>2022.0.0.0</spring.cloud.alibaba.version>
         <druid.version>1.2.18</druid.version>
         <swagger.version>2.1.0</swagger.version>
+        <fastjson.version>2.0.42</fastjson.version>
     </properties>
 
     <!-- 依赖版本管理 -->
@@ -73,6 +74,12 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
