@@ -41,4 +41,8 @@ spring:
           uri: lb://xuetang-media
           predicates:
             - Path=/media/**
+        - id: xuetang-search
+          uri: lb://xuetang-search
+          predicates:
+            - Path=/search/**
 

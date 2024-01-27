@@ -1,21 +1,21 @@
-package com.thuwsy.xuetang.content.po;
+package com.thuwsy.xuetang.message.po;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
- * @TableName course_publish
+ * ClassName: CoursePublish
+ * Package: com.thuwsy.xuetang.message.po
+ * Description:
+ *
+ * @Author THU_wsy
+ * @Create 2024/1/24 14:25
+ * @Version 1.0
  */
-@TableName(value ="course_publish")
 @Data
 public class CoursePublish implements Serializable {
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     private Long companyId;
