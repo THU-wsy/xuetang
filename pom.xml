@@ -16,6 +16,8 @@
         <module>xuetang-media</module>
         <module>xuetang-message</module>
         <module>xuetang-search</module>
+        <module>xuetang-auth</module>
+        <module>xuetang-checkcode</module>
     </modules>
 
     <!--管理版本号-->

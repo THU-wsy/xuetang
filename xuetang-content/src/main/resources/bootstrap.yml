@@ -36,6 +36,16 @@ spring:
     listener:
       simple:
         acknowledge-mode: manual # 开启消息手动确认模式
+  data:
+    redis:
+      host: 192.168.231.201
+      port: 6379
+      password: abc666
+  # 自定义jwt信息
+  security:
+    jwt:
+      key: 'a421bcd2e42fgh214' # 加密的私钥
+      expire: 72    # jwt过期时间，单位:小时
 
 # minio相关配置
 minio:

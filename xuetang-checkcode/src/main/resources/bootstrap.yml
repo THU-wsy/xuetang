@@ -1,0 +1,39 @@
+server:
+  port: 63075
+spring:
+  application:
+    name: xuetang-checkcode
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.231.201:3306/xuetang_content
+      username: root
+      password: abc666
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang
+      config:
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang
+  data:
+    redis:
+      host: 192.168.231.201
+      port: 6379
+      password: abc666
+  mail:
+    host: smtp.qq.com #邮件服务器地址
+    port: 465 #端口号
+    username: #QQ邮箱
+    password: #QQ邮箱的授权码
+    default-encoding: UTF-8 #默认编码格式
+    properties:
+      mail:
+        debug: true #启动debug调试
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory #SSL连接配置

@@ -5,6 +5,7 @@ import com.thuwsy.xuetang.base.exception.RestErrorResponse;
 import com.thuwsy.xuetang.base.exception.XueTangException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -60,6 +61,17 @@ public class GlobalExceptionHandler {
         // 返回错误信息
         log.error("【校验异常】{}", msg, e);
         return new RestErrorResponse(msg);
+    }
+
+    /**
+     * 处理没有权限访问资源的异常
+     * @param e AccessDeniedException
+     */
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public RestErrorResponse accessDeniedException(AccessDeniedException e) {
+        log.error("【用户权限不足】{}", e.getMessage());
+        return new RestErrorResponse("没有此功能的权限");
     }
 
     /**

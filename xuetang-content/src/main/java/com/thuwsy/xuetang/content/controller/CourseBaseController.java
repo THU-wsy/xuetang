@@ -7,8 +7,11 @@ import com.thuwsy.xuetang.content.dto.CourseBaseInfoDto;
 import com.thuwsy.xuetang.content.dto.EditCourseDto;
 import com.thuwsy.xuetang.content.dto.QueryCourseParamsDto;
 import com.thuwsy.xuetang.content.po.CourseBase;
+import com.thuwsy.xuetang.content.po.XcUser;
 import com.thuwsy.xuetang.content.service.CourseBaseService;
+import com.thuwsy.xuetang.content.utils.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,10 +30,14 @@ public class CourseBaseController {
     @Autowired
     private CourseBaseService courseBaseService;
 
+    @PreAuthorize("hasAuthority('xc_teachmanager_course_list')")
     @PostMapping("/list")
     public PageResult<CourseBase> list(PageParams params,
             @RequestBody(required = false) QueryCourseParamsDto dto) {
-        return courseBaseService.queryCourseBaseList(params, dto);
+        XcUser xcUser = SecurityUtil.getXcUser();
+        String companyIdString = xcUser.getCompanyId();
+        Long companyId = (companyIdString == null) ? null : Long.valueOf(companyIdString);
+        return courseBaseService.queryCourseBaseList(companyId, params, dto);
     }
 
     /**
@@ -49,6 +56,8 @@ public class CourseBaseController {
      */
     @GetMapping("/{id}")
     public CourseBaseInfoDto getCourseBaseById(@PathVariable Long id) {
+        XcUser xcUser = SecurityUtil.getXcUser();
+        System.out.println(xcUser);
         return courseBaseService.getCourseBaseById(id);
     }
 

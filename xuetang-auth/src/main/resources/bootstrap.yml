@@ -1,0 +1,32 @@
+server:
+  port: 63070
+spring:
+  application:
+    name: xuetang-auth
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.231.201:3306/xuetang_users
+      username: root
+      password: abc666
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang
+      config:
+        server-addr: 192.168.231.201:8848
+        namespace: dev
+        group: xuetang
+  data:
+    redis:
+      host: 192.168.231.201
+      port: 6379
+      password: abc666
+  # 自定义jwt信息
+  security:
+    jwt:
+      key: 'a421bcd2e42fgh214' # 加密的私钥
+      expire: 72    # jwt过期时间，单位:小时

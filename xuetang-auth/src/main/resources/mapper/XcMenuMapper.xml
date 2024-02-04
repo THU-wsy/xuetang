@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thuwsy.xuetang.auth.mapper.XcMenuMapper">
+
+    <resultMap id="BaseResultMap" type="com.thuwsy.xuetang.auth.po.XcMenu">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="code" column="code" jdbcType="VARCHAR"/>
+            <result property="pId" column="p_id" jdbcType="VARCHAR"/>
+            <result property="menuName" column="menu_name" jdbcType="VARCHAR"/>
+            <result property="url" column="url" jdbcType="VARCHAR"/>
+            <result property="isMenu" column="is_menu" jdbcType="CHAR"/>
+            <result property="level" column="level" jdbcType="INTEGER"/>
+            <result property="sort" column="sort" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="icon" column="icon" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,code,p_id,
+        menu_name,url,is_menu,
+        level,sort,status,
+        icon,create_time,update_time
+    </sql>
+    <select id="selectPermissionByUserId" resultType="com.thuwsy.xuetang.auth.po.XcMenu">
+        select * from xc_menu where id in (
+            select menu_id from xc_permission where role_id in (
+                select role_id from xc_user_role where user_id = #{userId}
+            )
+        )
+    </select>
+</mapper>

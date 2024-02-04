@@ -50,10 +50,12 @@ public class CourseBaseServiceImpl extends ServiceImpl<CourseBaseMapper, CourseB
     private CourseTeacherMapper courseTeacherMapper;
 
     @Override
-    public PageResult<CourseBase> queryCourseBaseList(PageParams params, QueryCourseParamsDto dto) {
+    public PageResult<CourseBase> queryCourseBaseList(Long companyId, PageParams params, QueryCourseParamsDto dto) {
         // 1. 构建查询条件wrapper
         LambdaQueryWrapper<CourseBase> wrapper = new LambdaQueryWrapper<>();
 
+        // 查询条件：机构id相同
+        wrapper.eq(CourseBase::getCompanyId, companyId);
         // 查询条件：课程名称（模糊查询）
         wrapper.like(StringUtils.isNotEmpty(dto.getCourseName()),
                 CourseBase::getName, dto.getCourseName());

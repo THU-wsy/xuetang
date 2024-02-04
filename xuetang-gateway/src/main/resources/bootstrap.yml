@@ -45,4 +45,11 @@ spring:
           uri: lb://xuetang-search
           predicates:
             - Path=/search/**
-
+        - id: xuetang-auth
+          uri: lb://xuetang-auth
+          predicates:
+            - Path=/auth/**
+        - id: xuetang-checkcode
+          uri: lb://xuetang-checkcode
+          predicates:
+            - Path=/checkcode/**

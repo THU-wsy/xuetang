@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>xuetang-content</artifactId>
+    <artifactId>xuetang-auth</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -22,12 +22,6 @@
             <groupId>com.thuwsy.xuetang</groupId>
             <artifactId>xuetang-base</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!-- minio依赖 -->
-        <dependency>
-            <groupId>io.minio</groupId>
-            <artifactId>minio</artifactId>
-            <version>8.5.7</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
